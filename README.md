@@ -5,7 +5,7 @@ To analyse climate in Honolulu, Hawaii in preparation for a holiday. This projec
 
 This project started off with an analysis of the precipitation (rainfall) and produced a visualisation of the amount of rainfall over the past 12 months (23-08-2016 to 23-08-2017 at time of publishing). Temperature data collected from the most active weather station was further analysed to obtain the lowest, highest, and average temperatures. 
 
-SurfsUp/Precipitation Analysis_Hawaii.png
+![](SurfsUp/Precipitation Analysis_Hawaii.png)
 
 We are now able to see which months have the greatest amount of rainfall by referring to 'Precipitation Analysis_Hawaii.png'. The plot suggests that March is the best time of the year to visit Hawaii given the relatively lower volumes of precipitation overserved between the span of 14-02-17 to 01-04-17. That is if you prefer the sunny weather. If your preference is for heavy downpours, late August till end September would be your cup of tea. 
 
