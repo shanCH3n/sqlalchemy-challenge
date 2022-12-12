@@ -23,33 +23,39 @@ Measurement = Base.classes.measurement
 Station = Base.classes.station
 
 
-#### Setup Flask ####
+#################################################
+# Flask Setup
+#################################################
 
 app = Flask(__name__)
 
 
-#### Flask Routes ####
+#################################################
+# Flask Routes
+#################################################
 
 # 1. Define homepage and list all available routes.
 
 @app.route("/")
 def welcome():
-    """List all available api routes."""
+    """List all available API routes"""
+    print("Server received request for 'Welcome' page...")
     return (
-        f"Available Routes for Hawaii Weather Data:<br/>"
+        f"Welcome to Hawaii Weather Data API!<br/>"
+        f"All available Routes:<br/>"
         f"Daily Precipitation Totals for the Last 12 Months: /api/v1.0/precipitation<br/>"
         f"List of Weather Stations: /api/v1.0/stations<br/>"
         f"Temperature Observations for Most Active Station over Last 12 Months: /api/v1.0/tobs<br/>"
-        f"Min, Average & Max Temperatures from Start Date: /api/v1.0/<start><br/>"
-        f"Min, Average & Max Temperatures for Date Range: /api/v1.0/<start>/<end><br/>"
-        f"NOTE: Enter all dates ('start' or 'end') in yyyy-mm-dd format."
+        f"Min, Average & Max Temperatures from Start Date: /api/v1.0/start<br/>"
+        f"Min, Average & Max Temperatures for Date Range: /api/v1.0/start/end<br/>"
+        f"NOTE: Please enter all 'start' and 'end' dates in yyyy-mm-dd format. For example: /api/v1.0/2012-07-01/2012-07-03."
     )
 
 
 
 # 2. Convert the query results into a dictionary by using date as the key and prcp as the value. Return the json representation of your dictionary. 
 
-@app.route('/api/v1.0/precipitation')
+@app.route("/api/v1.0/precipitation")
 def precipitation():
     session = Session(engine)
     
@@ -70,6 +76,7 @@ def precipitation():
         prcp_dict["Precipitation"] = prcp
         precipitation.append(prcp_dict)
 
+    print("Server received request for Daily Precipitation Totals for the Last 12 Months...")
     return jsonify(precipitation)
 
 
@@ -86,6 +93,8 @@ def stations():
     session.close()
     
     stationslist = list(np.ravel(activestations))
+    
+    print("Server received request for List of Weather Stations...")
     return jsonify(stationslist)
 
 
@@ -116,6 +125,7 @@ def tobs():
     
     mostactive_tobs_dict = dict(zip(obs_dates, obs_temperature))
 
+    print("Server received request for Temperature Observations for Most Active Station over Last 12 Months...")
     return jsonify(mostactive_tobs_dict)
 
 
@@ -124,7 +134,7 @@ def tobs():
 
 ## For specified start, calculate min, avg, and max temperature for all the dates greater than or equal to the start date.
 
-@app.route('/api/v1.0/<start>')
+@app.route("/api/v1.0/<start>")
 def onlystartdate(start):
     session = Session(engine)
     query_result = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
@@ -139,12 +149,14 @@ def onlystartdate(start):
         temp_dict["Max"] = max
         sumTemp.append(temp_dict)
 
+    print("Server received request for Min, Average & Max Temperatures from Start Date...")
     return jsonify(sumTemp)
+
 
 
 ## For specified start date and end date, calcultate min, avg, and max temperature for all the dates from the start date to the end date, inclusive.
 
-@app.route('/api/v1.0/<start>/<end>')
+@app.route("/api/v1.0/<start>/<end>")
 def startenddate(start,end):
     session = Session(engine)
     queryresult = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
@@ -159,4 +171,10 @@ def startenddate(start,end):
         temp_dict["Max"] = max
         sumTempRange.append(temp_dict)
 
+    print("Server received request for Min, Average & Max Temperatures from Date Range...")
     return jsonify(sumTempRange)
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
