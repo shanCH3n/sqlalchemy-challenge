@@ -26,9 +26,9 @@ List of Weather Stations (/api/v1.0/stations)
 
 Temperature Observations for Most Active Station over Last 12 Months (/api/v1.0/tobs)
 
-Min, Average & Max Temperatures from Start Date (/api/v1.0/<start>)
+Min, Average & Max Temperatures from Start Date (/api/v1.0/start)
 
-Min, Average & Max Temperatures for Date Range: (/api/v1.0/<start>/<end>)
+Min, Average & Max Temperatures for Date Range: (/api/v1.0/start/end)
 
 NOTE: Please enter all 'start' and 'end' dates in yyyy-mm-dd format.
 
