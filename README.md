@@ -1,5 +1,13 @@
 # Project Description
-Analyse climate in Honolulu, Hawaii to plan for a holiday. Utilise SQLAlchemy ORM queries, Pandas, and Matplotlib to conduct a basic climate analysis and designed a Flask App to showcase database query results. This app ('Hawaii Weather Data API') enables of query of the weather data between a period span of 1 Jan 2010 to 23 Aug 2017.
+To analyse climate in Honolulu, Hawaii in preparation for a holiday. This project uses SQLAlchemy ORM queries, Pandas, and Matplotlib to perform basic data exploration, conduct an analysis of an SQlite database, and create a Flask App to showcase query results. This app ('Hawaii Weather Data API') enables of query of the weather data between a period span of 1 Jan 2010 to 23 Aug 2017.
+
+## Analysis Results & Holiday Implications
+
+This project started off with an analysis of the precipitation (rainfall) and produced a visualisation of the amount of rainfall over the past 12 months (23-08-2016 to 23-08-2017 at time of publishing). Temperature data collected from the most active weather station was further analysed to obtain the lowest, highest, and average temperatures. 
+
+We are now able to see which months have the greatest amount of rainfall by referring to 'Precipitation Analysis_Hawaii.png'. The plot suggests that March is the best time of the year to visit Hawaii given the relatively lower volumes of precipitation overserved between the span of 14-02-17 to 01-04-17. That is if you prefer the sunny weather. If your preference is for heavy downpours, late August till end September would be your cup of tea. 
+
+You can expect temperatures between 22-26 degrees celsius year round in Hawaii based on the histogram ('Aug2016-2017_USC00519281.png') our analysis generated that notes that such temperatures were most frequently observed in Hawaii.
 
 ## How to navigate the Hawaii Weather Data API
 
